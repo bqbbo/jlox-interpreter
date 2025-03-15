@@ -36,6 +36,7 @@ class Scanner {
         char c = advance();
 
         switch (c) {
+
             case '(':
                 addToken(TokenType.LEFT_PAREN);
                 break;
@@ -63,11 +64,56 @@ class Scanner {
             case ';':
                 addToken(TokenType.SEMICOLON);
                 break;
-            case '*':
-                addToken(TokenType.STAR);
-                break;
             case '%':
                 addToken(TokenType.PERCENT);
+                break;
+
+            case '!':
+                addToken(match('=') ? TokenType.BANG_EQUAL : TokenType.BANG);
+                break;
+            case '*':
+                addToken(match('*') ? TokenType.STAR_STAR : TokenType.STAR);
+            case '=':
+                addToken(match('=') ? TokenType.EQUAL_EQUAL : TokenType.EQUAL);
+                break;
+            case '<':
+                addToken(match('=') ? TokenType.LESS_EQUAL : TokenType.LESS);
+                break;
+            case '>':
+                addToken(match('=') ? TokenType.GREATER_EQUAL : TokenType.GREATER);
+                break;
+
+            case '/':
+                if (match('/')) {
+                    // Single Line Comment
+                    while (peek() != '\n' && !isAtEnd()) {
+                        advance();
+                    }
+                } else if (match('*')) {
+                    // Multi-Line Comment
+                    while (!isAtEnd()) {
+                        if (peek() == '*' && peek(1) == '/') {
+                            current += 2;
+                            break;
+                        }
+
+                        if (peek() == '\n') {
+                            line++;
+                        }
+
+                        advance();
+                    }
+
+                } else {
+                    addToken(TokenType.SLASH);
+                }
+
+            case ' ':
+            case '\r':
+            case '\t':
+                break;
+            case '\n':
+                line++;
                 break;
 
             default:
@@ -76,7 +122,7 @@ class Scanner {
         }
     }
 
-    // Returns if the character after 'c' is the expected character
+    // Return 'true' if the character after 'c' is the expected character
     private boolean match(char expectedChar) {
         if (isAtEnd()) {
             return false;
@@ -89,12 +135,18 @@ class Scanner {
         return true;
     }
 
-    // Returns the character after 'c'
+    // Returns the character after 'c': Default method for character at 'current'
     private char peek() {
-        if (isAtEnd()) {
+        return peek(0);
+    }
+
+    // Allows lookahead to be greater than 'current'
+    private char peek(int lookahead) {
+        if (current + lookahead >= sourceCode.length()) {
             return '\0';
         }
-        return sourceCode.charAt(current);
+
+        return sourceCode.charAt(current + lookahead);
     }
 
     // Returns the current value of 'current', then increments
@@ -102,7 +154,7 @@ class Scanner {
         return sourceCode.charAt(current++);
     }
 
-    // Token appending helper methods
+    // 'token' appending helper methods
     private void addToken(TokenType type) {
         addToken(type, null);
     }
