@@ -73,6 +73,7 @@ class Scanner {
                 break;
             case '*':
                 addToken(match('*') ? TokenType.STAR_STAR : TokenType.STAR);
+                break;
             case '=':
                 addToken(match('=') ? TokenType.EQUAL_EQUAL : TokenType.EQUAL);
                 break;
