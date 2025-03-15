@@ -41,7 +41,7 @@ public class Lox {
 
         System.out.println("Welcome to Lox!");
         System.out.println("Created by bqbbo with of Crafting Interpreters");
-        System.out.println("Version: jlox-scanner-eofonly [WIP]");
+        System.out.println("Version: jlox-scanner-full [WIP]");
         System.out.println();
 
         while (true) {

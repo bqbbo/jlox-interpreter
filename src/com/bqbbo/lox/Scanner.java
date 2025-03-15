@@ -76,6 +76,27 @@ class Scanner {
         }
     }
 
+    // Returns if the character after 'c' is the expected character
+    private boolean match(char expectedChar) {
+        if (isAtEnd()) {
+            return false;
+        }
+        if (sourceCode.charAt(current) != expectedChar) {
+            return false;
+        }
+
+        current++;
+        return true;
+    }
+
+    // Returns the character after 'c'
+    private char peek() {
+        if (isAtEnd()) {
+            return '\0';
+        }
+        return sourceCode.charAt(current);
+    }
+
     // Returns the current value of 'current', then increments
     private char advance() {
         return sourceCode.charAt(current++);
