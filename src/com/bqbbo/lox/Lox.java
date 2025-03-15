@@ -73,7 +73,7 @@ public class Lox {
 
     // Reports errors supplied by error() with proper string formatting
     private static void report(int line, String where, String errorMessage) {
-        System.out.println("[line" + line + " ] Error " + where + ": " + errorMessage);
+        System.out.println("[Line " + line + "] Error" + where + ": " + errorMessage);
         hadError = true;
     }
 }
