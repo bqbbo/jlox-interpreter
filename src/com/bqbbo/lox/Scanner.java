@@ -124,9 +124,18 @@ class Scanner {
                     }
                 } else if (match('*')) {
                     // Multi-Line Comment
+                    int nestLevel = 1;
+
                     while (!isAtEnd()) {
-                        if (peek() == '*' && peek(1) == '/') {
+                        if (peek() == '/' && peek(1) == '*') {
+                            nestLevel++;
                             advance(2);
+                        } else if (peek() == '*' && peek(1) == '/') {
+                            nestLevel--;
+                            advance(2);
+                        }
+
+                        if (nestLevel == 0) {
                             break;
                         }
 
