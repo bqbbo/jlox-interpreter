@@ -118,10 +118,33 @@ class Scanner {
                 line++;
                 break;
 
+            case '"':
+                string();
+                break;
+
             default:
                 Lox.error(line, "Unexpected character \"" + c + "\"");
                 break;
         }
+    }
+
+    private void string() {
+        while (peek() != '"' && !isAtEnd()) {
+            if (peek() == '\n') {
+                line++;
+            }
+
+            advance();
+        }
+
+        if (isAtEnd()) {
+            Lox.error(line, "Unterminated string");
+        }
+
+        advance(); // Consume the ending " character
+
+        String stringLiteral = sourceCode.substring(start + 1, current - 1);
+        addToken(TokenType.STRING, stringLiteral);
     }
 
     // Return 'true' if the character after 'c' is the expected character
