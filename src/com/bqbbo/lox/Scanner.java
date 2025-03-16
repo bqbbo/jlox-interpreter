@@ -133,6 +133,7 @@ class Scanner {
         }
     }
 
+    // Handles string lexemes
     private void string() {
         while (peek() != '"' && !isAtEnd()) {
             if (peek() == '\n') {
@@ -153,6 +154,7 @@ class Scanner {
         addToken(TokenType.STRING, stringLiteral);
     }
 
+    // Handles int/float lexemes
     private void number() {
         while (isDigit(peek())) {
             advance();
@@ -210,10 +212,12 @@ class Scanner {
         return currentChar;
     }
 
+    // Returns if char 'c' is a decimal digit
     private boolean isDigit(char c) {
         return c >= '0' && c <= '9';
     }
 
+    // Returns if char 'c' is acceptable for identifiers
     private boolean isAlpha(char c) {
         return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c == '_');
     }
