@@ -94,7 +94,7 @@ class Scanner {
                     // Multi-Line Comment
                     while (!isAtEnd()) {
                         if (peek() == '*' && peek(1) == '/') {
-                            current += 2;
+                            advance(2);
                             break;
                         }
 
@@ -123,7 +123,12 @@ class Scanner {
                 break;
 
             default:
-                Lox.error(line, "Unexpected character \"" + c + "\"");
+                if (isDigit(c)) {
+                    number();
+                } else {
+                    Lox.error(line, "Unexpected character \"" + c + "\"");
+                }
+
                 break;
         }
     }
@@ -146,6 +151,23 @@ class Scanner {
 
         String stringLiteral = sourceCode.substring(start + 1, current - 1);
         addToken(TokenType.STRING, stringLiteral);
+    }
+
+    private void number() {
+        while (isDigit(peek())) {
+            advance();
+        }
+
+        if (peek() == '.' && isDigit(peek(1))) {
+            advance(); // Consume "."
+
+            while (isDigit(peek())) {
+                advance();
+            }
+        }
+
+        Double numberLiteral = Double.parseDouble(sourceCode.substring(start, current));
+        addToken(TokenType.NUMBER, numberLiteral);
     }
 
     // Return 'true' if the character after 'c' is the expected character
@@ -177,7 +199,23 @@ class Scanner {
 
     // Returns the current value of 'current', then increments
     private char advance() {
-        return sourceCode.charAt(current++);
+        return advance(1);
+    }
+
+    // Allow for multiple advances at once
+    private char advance(int advanceInt) {
+        char currentChar = sourceCode.charAt(current);
+        current += advanceInt;
+
+        return currentChar;
+    }
+
+    private boolean isDigit(char c) {
+        return c >= '0' && c <= '9';
+    }
+
+    private boolean isAlpha(char c) {
+        return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c == '_');
     }
 
     // 'token' appending helper methods
