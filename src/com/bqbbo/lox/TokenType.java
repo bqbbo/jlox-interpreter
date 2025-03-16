@@ -24,5 +24,7 @@ enum TokenType {
 
     // Keyword Misc
 
-    VAR, RETURN, PRINT, EOF
+    VAR, RETURN, PRINT,
+
+    EOF
 }

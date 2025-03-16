@@ -1,11 +1,43 @@
 package com.bqbbo.lox;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 class Scanner {
     private final String sourceCode;
     private final List<Token> tokens = new ArrayList<>();
+
+    private static final Map<String, TokenType> keywords;
+
+    // Keywords, ordered as in TokenType enum
+    static {
+        keywords = new HashMap<>();
+        keywords.put("true", TokenType.TRUE);
+        keywords.put("false", TokenType.FALSE);
+        keywords.put("nil", TokenType.NIL);
+
+        keywords.put("and", TokenType.AND);
+        keywords.put("nand", TokenType.NAND);
+        keywords.put("or", TokenType.OR);
+        keywords.put("xor", TokenType.XOR);
+        keywords.put("xnor", TokenType.XNOR);
+
+        keywords.put("fun", TokenType.FUN);
+        keywords.put("class", TokenType.CLASS);
+        keywords.put("super", TokenType.SUPER);
+        keywords.put("this", TokenType.THIS);
+
+        keywords.put("if", TokenType.IF);
+        keywords.put("for", TokenType.FOR);
+        keywords.put("while", TokenType.WHILE);
+
+        keywords.put("var", TokenType.VAR);
+        keywords.put("return", TokenType.RETURN);
+        keywords.put("print", TokenType.PRINT);
+
+    }
 
     private int start = 0;
     private int current = 0;
@@ -125,6 +157,8 @@ class Scanner {
             default:
                 if (isDigit(c)) {
                     number();
+                } else if (isAlpha(c)) {
+                    identifier();
                 } else {
                     Lox.error(line, "Unexpected character \"" + c + "\"");
                 }
@@ -170,6 +204,21 @@ class Scanner {
 
         Double numberLiteral = Double.parseDouble(sourceCode.substring(start, current));
         addToken(TokenType.NUMBER, numberLiteral);
+    }
+
+    private void identifier() {
+        while (isAlphaNumeric(peek())) {
+            advance();
+        }
+
+        String identiferLiteral = sourceCode.substring(start, current);
+        TokenType type = keywords.get(identiferLiteral);
+
+        if (type == null) {
+            type = TokenType.IDENTIFIER;
+        }
+
+        addToken(type);
     }
 
     // Return 'true' if the character after 'c' is the expected character
@@ -220,6 +269,11 @@ class Scanner {
     // Returns if char 'c' is acceptable for identifiers
     private boolean isAlpha(char c) {
         return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c == '_');
+    }
+
+    // Combination of isAlpha() and isDigit()
+    private boolean isAlphaNumeric(char c) {
+        return isAlpha(c) || isDigit(c);
     }
 
     // 'token' appending helper methods
