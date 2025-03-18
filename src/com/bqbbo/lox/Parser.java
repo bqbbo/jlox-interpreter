@@ -18,7 +18,6 @@ class Parser {
         try {
             return expression();
         } catch (ParseError error) {
-            System.out.println(error);
             return null;
         }
     }
@@ -175,7 +174,6 @@ class Parser {
 
     // Throw a Syntax error to trigger synchronization
     private ParseError error(Token token, String errorMessage) {
-        System.out.println("error lol");
         Lox.error(token, errorMessage);
         return new ParseError();
     }
