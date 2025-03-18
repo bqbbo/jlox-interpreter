@@ -41,10 +41,11 @@ class Lox {
 
         System.out.println("Welcome to Lox!");
         System.out.println("Created by bqbbo with of Crafting Interpreters");
-        System.out.println("Version: jlox-scanner-full [WIP]");
+        System.out.println("Version: jlox-parser-lite [WIP]");
         System.out.println();
 
         while (true) {
+            hadError = false;
             System.out.print("> ");
             String REPLInput = REPLBufferReader.readLine();
 
@@ -64,11 +65,33 @@ class Lox {
         for (Token token : tokens) {
             System.out.println(token);
         }
+
+        if (hadError) {
+            return;
+        }
+
+        Parser parser = new Parser(tokens);
+        Expr expression = parser.parse();
+
+        if (hadError) {
+            return;
+        }
+
+        System.out.println(new AstPrinter().print(expression));
     }
 
-    // Used by other classes to report errors in source
+    // Used by scanner to report lexing errors
     static void error(int line, String errorMessage) {
         report(line, "", errorMessage);
+    }
+
+    // Used by parser to report syntax errors
+    static void error(Token token, String errorMessage) {
+        if (token.type == TokenType.EOF) {
+            report(token.line, " at end", errorMessage);
+        } else {
+            report(token.line, " at '" + token.lexeme + "'", errorMessage);
+        }
     }
 
     // Reports errors supplied by error() with proper string formatting

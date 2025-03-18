@@ -170,7 +170,7 @@ class Scanner {
                 } else if (isAlpha(c)) {
                     identifier();
                 } else {
-                    Lox.error(line, "Unexpected character \"" + c + "\"");
+                    Lox.error(line, "Unexpected character '" + c + "'");
                 }
 
                 break;
