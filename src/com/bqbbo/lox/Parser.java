@@ -196,6 +196,8 @@ class Parser {
                 case TokenType.RETURN:
                 case TokenType.PRINT:
                     return;
+                default:
+                    ;
             }
 
             advance();
