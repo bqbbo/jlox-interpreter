@@ -49,6 +49,7 @@ public class GenerateAst {
 
     }
 
+    // Defines a visitor method for each 'Expr.[TypeName]'
     private static void defineVisitor(PrintWriter fileWriter, String baseName, List<String> types) {
         fileWriter.println("    interface Visitor<R> {");
 
