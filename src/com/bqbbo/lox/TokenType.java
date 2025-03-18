@@ -14,7 +14,7 @@ enum TokenType {
     TRUE, FALSE, NIL,
 
     // Keyword Bool Operations
-    AND, NAND, OR, XOR, XNOR,
+    AND, NAND, OR, NOR, XOR, XNAND,
 
     // Keyword Functions/Classes
     FUN, CLASS, SUPER, THIS,

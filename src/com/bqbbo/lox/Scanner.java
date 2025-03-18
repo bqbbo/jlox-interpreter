@@ -21,8 +21,9 @@ class Scanner {
         keywords.put("and", TokenType.AND);
         keywords.put("nand", TokenType.NAND);
         keywords.put("or", TokenType.OR);
+        keywords.put("nor", TokenType.NOR);
         keywords.put("xor", TokenType.XOR);
-        keywords.put("xnor", TokenType.XNOR);
+        keywords.put("xnand", TokenType.XNAND);
 
         keywords.put("fun", TokenType.FUN);
         keywords.put("class", TokenType.CLASS);
