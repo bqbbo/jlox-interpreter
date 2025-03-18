@@ -31,6 +31,8 @@ public class GenerateAst {
         fileWriter.println("import java.util.List;");
         fileWriter.println("abstract class " + baseName + " {");
 
+        defineVisitor(fileWriter, baseName, types);
+
         for (String type : types) {
             String className = type.split(":")[0].trim();
             String fieldList = type.split(":")[1].trim();
@@ -38,9 +40,25 @@ public class GenerateAst {
             defineType(fileWriter, baseName, className, fieldList);
         }
 
+        fileWriter.println();
+        fileWriter.println("    abstract <R> R accept(Visitor<R> visitor);");
+
         fileWriter.println("}");
+        fileWriter.println();
         fileWriter.close();
 
+    }
+
+    private static void defineVisitor(PrintWriter fileWriter, String baseName, List<String> types) {
+        fileWriter.println("    interface Visitor<R> {");
+
+        for (String type : types) {
+            String typeName = type.split(":")[0].trim();
+            fileWriter.println(
+                    "        R visit" + typeName + baseName + "(" + typeName + " " + baseName.toLowerCase() + ");");
+        }
+
+        fileWriter.println("    }");
     }
 
     // Writes subclasses under `baseClass` to the AST file
@@ -54,6 +72,12 @@ public class GenerateAst {
             fileWriter.println("            this." + name + " = " + name + ";");
         }
 
+        fileWriter.println("        }");
+        fileWriter.println();
+
+        fileWriter.println("        @Override");
+        fileWriter.println("        <R> R accept(Visitor<R> visitor) {");
+        fileWriter.println("            return visitor.visit" + className + baseName + "(this);");
         fileWriter.println("        }");
 
         fileWriter.println();
