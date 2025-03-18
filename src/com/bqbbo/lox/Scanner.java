@@ -285,11 +285,12 @@ class Scanner {
         return isAlpha(c) || isDigit(c);
     }
 
-    // 'token' appending helper methods
+    // Method overloaded to reduce redundancy with identifiers
     private void addToken(TokenType type) {
         addToken(type, null);
     }
 
+    // Appends token data to 'tokens'
     private void addToken(TokenType type, Object literal) {
         String text = sourceCode.substring(start, current);
         tokens.add(new Token(type, text, literal, line));
