@@ -74,6 +74,6 @@ To execute your jar, simply run `java -jar jlox.jar`.
 
 **This repository is subject to multiple licenses, as required by the license of Crafting Interpreters by Robert Nystrom.** Please read `https://github.com/bqbbo/jlox-interpreter/blob/main/LICENSE` for all licensing information as it is unique from all of my other repositories.
 
-All `.java` files are under the MIT license, per the [Crafting Interpreters Repository License.](https://github.com/munificent/craftinginterpreters/blob/master/LICENSE/)
+All `.java` files are under the MIT license, per the [Crafting Interpreters Repository License](https://github.com/munificent/craftinginterpreters/blob/master/LICENSE/).
 
 All other files are under the [GNU General Public License V3](https://www.gnu.org/licenses/gpl-3.0.en.html), with potentially a few exceptions.
