@@ -22,6 +22,8 @@ I may also implement these features in the future:
 -   Bitwise Operations: `& | < > ^ ~` etc.
 -   Escape Sequences: `"\n" "\t"` etc.
 
+After the project is complete, the remaining challenges will be slowly implemented into the project until all of them are complete.
+
 ## How?
 
 I originally discovered _Crafting Interpreters_ from a friend on a forum post, and began to read the web version where I coughed up the Scanner and some of the formal grammar for the language's [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree/). This was in my sixth-grade year, but I ended up dropping the project to focus on web-based programming.
