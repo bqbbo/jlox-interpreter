@@ -10,7 +10,10 @@ import java.util.List;
 
 class Lox {
 
+    private static final Interpreter interpreter = new Interpreter();
+
     static boolean hadError = false;
+    static boolean hadRuntimeError = false;
 
     // Determines whether to run from a file or use REPL; extra args return code 64
     public static void main(String[] args) throws IOException {
@@ -32,6 +35,10 @@ class Lox {
         if (hadError) {
             System.exit(65);
         }
+
+        if (hadRuntimeError) {
+            System.exit(70);
+        }
     }
 
     // Launch REPL loop
@@ -46,6 +53,7 @@ class Lox {
 
         while (true) {
             hadError = false;
+            hadRuntimeError = false;
             System.out.print("> ");
             String REPLInput = REPLBufferReader.readLine();
 
@@ -78,6 +86,8 @@ class Lox {
         }
 
         System.out.println(new AstPrinter().print(expression));
+
+        interpreter.Interpret(expression);
     }
 
     // Used by scanner to report lexing errors
@@ -92,6 +102,11 @@ class Lox {
         } else {
             report(token.line, " at '" + token.lexeme + "'", errorMessage);
         }
+    }
+
+    static void runtimeError(RuntimeError error) {
+        System.out.println("[Line " + error.token.line + "] Error: " + error.getMessage());
+        hadRuntimeError = true;
     }
 
     // Reports errors supplied by error() with proper string formatting
