@@ -4,13 +4,13 @@ _The project is not complete, but below will be the final README._
 
 ## About
 
-jlox is the Java implementation of the programming language Lox, created by Robert Nystrom along with his interpreters guidebook, [_Crafting Interpreters_](https://craftinginterpreters.com/). jlox is a Tree-Walk Interpreter written entirely with Java 7 and builtin libraries; none of its functionality uses any external helpers. jlox is Part One of a two-part series of implementations, the other being clox, a C implementation with the same features, but more complexity.
+jlox is the Java implementation of the programming language Lox, created by Robert Nystrom along with his interpreters' guidebook, [_Crafting Interpreters_](https://craftinginterpreters.com/). jlox is a Tree-Walk Interpreter written entirely with Java 7 and built-in libraries; none of its functionality uses any external helpers. jlox is Part One of a two-part series of implementations, the other being clox, a C implementation with the same features, but more complexity.
 
 ## Additional Features
 
 A portion of my code differs from the book; my code is linted significantly better and has more extensive commenting on a per-method basis. Variables are renamed to make them slightly more clear to read.
 
-I included multiple extra features not included in the main body of the book; most were additional challenges, but some were completely unique. Below is everything that is not necessarily in the original implementation.
+I included multiple extra features not included in the main body of the book; most were additional challenges, but some were unique. Below is everything that is not necessarily in the original implementation.
 
 -   Modulo Operator: `8 % 2 = 0`
 -   Exponent Operator (Inspired by Python): `2 ** 3 = 8`
@@ -24,11 +24,11 @@ I may also implement these features in the future:
 
 ## How?
 
-I originally discovered _Crafting Interpreters_ from a friend on a forum post, and begun to read the web version where I coughed up the Scanner and some of the formal grammar for the language's [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree/). This was in my sixth grade year, but I ended up dropping the project to focus web-based programming.
+I originally discovered _Crafting Interpreters_ from a friend on a forum post, and began to read the web version where I coughed up the Scanner and some of the formal grammar for the language's [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree/). This was in my sixth-grade year, but I ended up dropping the project to focus on web-based programming.
 
-Earlier this year, I began developing the project once again, completely from scratch, and ordered the physical 600 page book.
+Earlier this year, I began developing the project once again, completely from scratch and ordered the physical 600-page book.
 
-Over a span of over around **50-100 hours**, mostly made of commits in private repositories or reading theory, jlox has finally been completed after almost two and a half years!
+Throughout over **50-100 hours**, mostly made of commits in private repositories or reading theory, jlox has finally been completed after almost two and a half years!
 
 ## Experience Gain
 
@@ -74,6 +74,6 @@ To execute your jar, simply run `java -jar jlox.jar`.
 
 **This repository is subject to multiple licenses, as required by the license of Crafting Interpreters by Robert Nystrom.** Please read `https://github.com/bqbbo/jlox-interpreter/blob/main/LICENSE` for all licensing information as it is unique from all of my other repositories.
 
-All `".java"` files are under the MIT license, per the [Crafting Interpreters Repository License.](https://github.com/munificent/craftinginterpreters/blob/master/LICENSE/)
+All `.java` files are under the MIT license, per the [Crafting Interpreters Repository License.](https://github.com/munificent/craftinginterpreters/blob/master/LICENSE/)
 
 All other files are under the [GNU General Public License V3](https://www.gnu.org/licenses/gpl-3.0.en.html), with potentially a few exceptions.
