@@ -34,7 +34,7 @@ Throughout over **50-100 hours**, mostly made of commits in private repositories
 
 ## Experience Gain
 
-jlox (only the first part) was a great experience in many CS fields
+jlox was great for expanding on the following topics:
 
 -   Polymorphism & Inheritance (Interfaces, Abstract Classes, & More)
 -   Design Patterns (Visitor Pattern)
