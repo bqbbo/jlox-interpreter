@@ -70,24 +70,18 @@ class Lox {
         Scanner scanner = new Scanner(sourceCode);
         List<Token> tokens = scanner.scanTokens();
 
-        for (Token token : tokens) {
-            System.out.println(token);
-        }
-
         if (hadError) {
             return;
         }
 
         Parser parser = new Parser(tokens);
-        Expr expression = parser.parse();
+        List<Stmt> statements = parser.parse();
 
         if (hadError) {
             return;
         }
 
-        System.out.println(new AstPrinter().print(expression));
-
-        interpreter.Interpret(expression);
+        interpreter.interpret(statements);
     }
 
     // Used by scanner to report lexing errors
