@@ -48,7 +48,7 @@ class Lox {
 
         System.out.println("Welcome to Lox!");
         System.out.println("Created by bqbbo with of Crafting Interpreters");
-        System.out.println("Version: jlox-interpreter-basicExpressions");
+        System.out.println("Version: jlox-interpreter-variable");
         System.out.println();
 
         while (true) {
