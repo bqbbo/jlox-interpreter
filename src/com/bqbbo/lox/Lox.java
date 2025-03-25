@@ -47,7 +47,7 @@ class Lox {
         BufferedReader REPLBufferReader = new BufferedReader(REPLInputReader);
 
         System.out.println("Welcome to Lox!");
-        System.out.println("Created by bqbbo with of Crafting Interpreters");
+        System.out.println("Created by bqbbo with help of Crafting Interpreters");
         System.out.println("Version: jlox-interpreter-variable");
         System.out.println();
 
