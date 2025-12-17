@@ -1,10 +1,8 @@
 # jlox: The Java Implementation of Lox
 
-_The project is not complete, but below will be the final README._
-
 ## About
 
-jlox is the Java implementation of the programming language Lox, created by Robert Nystrom along with his interpreters' guidebook, [_Crafting Interpreters_](https://craftinginterpreters.com/). jlox is a Tree-Walk Interpreter written entirely with Java 7 and built-in libraries; none of its functionality uses any external helpers. jlox is Part One of a two-part series of implementations, the other being clox, a C implementation with the same features, but more complexity.
+jlox is the Java implementation of the programming language Lox, created by Robert Nystrom along with his interpreter's guidebook, [_Crafting Interpreters_](https://craftinginterpreters.com/). jlox is a Tree-Walk Interpreter written entirely with Java 7 and built-in libraries; none of its functionality uses any external helpers. jlox is Part One of a two-part series of implementations, the other being clox, a C implementation with the same features, but more complexity.
 
 ## Additional Features
 
@@ -79,3 +77,4 @@ To execute your jar, simply run `java -jar jlox.jar`.
 All `.java` files are under the MIT license, per the [Crafting Interpreters Repository License](https://github.com/munificent/craftinginterpreters/blob/master/LICENSE/).
 
 All other files are under the [GNU General Public License V3](https://www.gnu.org/licenses/gpl-3.0.en.html), with potentially a few exceptions.
+
